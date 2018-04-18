@@ -6,7 +6,11 @@
 
   Description:
     The program reads a PGM image from the file "inImage.pgm",
-    and outputs a modified image to "outImage.pgm"
+    and outputs an inverted version of the image to "outImage.pgm" 
+
+  Compile command: g++ invert.cpp -o invert
+  Run command: ./invert
+  Open image: eog outImage.pgm
 */
 
 
@@ -24,15 +28,6 @@ void readImage(int image[MAX_H][MAX_W], int &height, int &width);
 void writeImage(int image[MAX_H][MAX_W], int height, int width);    
 
 int main() {
-    /* 
-    CODE: 
-        img dimensions are MAX_H and MAX_W
-        variables h, q are set to the actual width of the image
-        for loops operate on h,w (the actual image)
-        output images are based on arguments to the function
-        writeImage(out, h, w)
-        change arguments for a different image size
-    */
 
 	int img[MAX_H][MAX_W];
 	int h, w;
@@ -48,8 +43,7 @@ int main() {
 
 	for(int row = 0; row < h; row++) {
 		for(int col = 0; col < w; col++) {
-			out[row][col] = 255 - img[row][col]; // one for one copy of the int data 
-			                                     //in the img array
+			out[row][col] = 255 - img[row][col]; // invert pixels
 		}
 	}
 

@@ -6,7 +6,11 @@
 
   Description:
     The program reads a PGM image from the file "inImage.pgm",
-    and outputs a modified image to "outImage.pgm"
+    and outputs a modified image to "outImage.pgm". The image now has a white box in the middle.
+
+  Compile command: g++ box.cpp -o box
+  Run command: ./box
+  Open image: eog outImage.pgm
 */
 
 
@@ -35,7 +39,10 @@ int main() {
 
 	// Now we can manipulate the image the way we like
 	// for example we copy its contents into a new array
+
 	int out[MAX_H][MAX_W];
+
+	// *** Variables to indicate the margins ***
     int leftMargin = w/4;
     int rightMargin = w - leftMargin;
     int topMargin = h/4;
@@ -44,9 +51,9 @@ int main() {
     
 	for(int row = 0; row < h; row++) {
 		for(int col = 0; col < w; col++) {
-		    if( ((col > leftMargin) && (col < rightMargin)) && ((row > topMargin) && (row < bottomMargin)) ){
-			out[row][col] = 255;
-			} else {
+		    if( ((col > leftMargin) && (col < rightMargin)) && ((row > topMargin) && (row < bottomMargin)) ){ //If col and row are within the margins
+			out[row][col] = 255; // make the pixels white
+			} else { //otherwise keep them the same
 			out[row][col] = img[row][col];
 			}
 		}

@@ -2,15 +2,14 @@
   Author: Alessandra Vertrees
   Course: CSCI-136
   Instructor: Nick Crister
-  Assignment: Lab 9E
+  Assignment: Lab 9F
 
   Description:
     The program reads a PGM image from the file "inImage.pgm",
-    and outputs a modified image to "outImage.pgm".
-    This image is scaled to 200% of the original picture's size. 
+    and outputs a pixelated version of "inImage.pgm" to "outImage.pgm". 
 
-  Compile command: g++ scale.cpp -o scale
-  Run command: ./scale
+  Compile command: g++ pixelate.cpp -o pixelate
+  Run command: ./pixelate
   Open image: eog outImage.pgm
 */
 
@@ -24,8 +23,6 @@ using namespace std;
 
 const int MAX_H = 512;
 const int MAX_W = 512;
-
-
 
 void readImage(int image[MAX_H][MAX_W], int &height, int &width);
 void writeImage(int image[MAX_H][MAX_W], int height, int width);    
@@ -42,35 +39,45 @@ int main() {
 
 	// Now we can manipulate the image the way we like
 	// for example we copy its contents into a new array
+
 	int out[MAX_H][MAX_W];
-	
-    //Scale the original picture to 200% of its size. 
-    //It can be done by increasing the size of the picture by the factor of 2, and
-    //copying each pixel of the input as a small 2x2 square in the output. 
+    int hb = MAX_H;
+    int wb = MAX_W; 
 
-    int outRow; 
-	for(int row = 0; row < h; row++) {
-	    outRow = row;
-		for(int col = 0; col < w; col++) {
-			//new row and col variables
-			//not respectfully. 
-			int x = row*2;
-			int y = col*2;
-
+	for(int row = 0; row < hb; (row = row + 2 )) {
+		for(int col = 0; col < wb; ( col = col + 2)) {
+			//get average of 2x2 pixel square:
+			// declare x, xb, y, yb for coordinates of square to calc average
+			// col*2 indicates each corner of the 2x2 square
+			int x = col;
+			int y = row;
 			int xb = x+1;
 			int yb = y+1;
-			//scaled pixels
-		    out[x][y] = img[row][col];
-			out[xb][y] = img[row][col];
-		    out[x][yb] = img[row][col];
-		    out[xb][yb] = img[row][col];
+			// int avg = (TL + TR + BL + BR ) / 4
+			int aveColor = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;
+			//if 0,0 or both col and row are divisable by 2
+			// store value of 2x2 pixel square in outImage to the average value that was calculated above
+			//new row and col variables
+
+			if( ((col == 0) && (row == 0)) || ( (col == 0) || (row == 0)) ){
+				// scaled pixels
+			    out[x][y] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;
+				out[xb][y] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;
+			    out[x][yb] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;
+			    out[xb][yb] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;	
+
+			} else if ((row%2 == 0) && (col%2 == 0)) {
+				//scaled pixels
+			    out[x][y] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;
+				out[xb][y] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;
+			    out[x][yb] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;
+			    out[xb][yb] = (img[x][y] + img[x][yb] + img[xb][y] + img[xb][yb])/4;		
+			}
 		}
 	}
 
 	// and save this new image to file "outImage.pgm"
-	int outH = h*2;
-	int outW = w*2;
-	writeImage(out, outH, outW);
+	writeImage(out, h, w);
 
 }
 

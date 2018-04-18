@@ -27,7 +27,15 @@ int main() {
 
 	int img[MAX_H][MAX_W];
 	int h, w;
-
+    /* 
+    CODE: 
+        img dimensions are MAX_H and MAX_W
+        variables h, q are set to the actual width of the image
+        for loops operate on h,w (the actual image)
+        output images are based on arguments to the function
+        writeImage(out, h, w)
+        change arguments for a different image size
+    */
 	readImage(img, h, w); // read it from the file "inImage.pgm"
 	// h and w were passed by reference and
 	// now contain the dimensions of the picture

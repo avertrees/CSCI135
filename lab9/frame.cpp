@@ -6,7 +6,11 @@
 
   Description:
     The program reads a PGM image from the file "inImage.pgm",
-    and outputs a modified image to "outImage.pgm"
+    and outputs a modified image to "outImage.pgm". The image now has a white rectangluar outline in the middle.
+
+  Compile command: g++ frame.cpp -o frame
+  Run command: ./frame
+  Open image: eog outImage.pgm
 */
 
 
@@ -35,7 +39,10 @@ int main() {
 
 	// Now we can manipulate the image the way we like
 	// for example we copy its contents into a new array
+
 	int out[MAX_H][MAX_W];
+
+	// *** Variables to indicate the margins *** 
     int leftMargin = w/4;
     int rightMargin = w - leftMargin;
     int topMargin = h/4;
@@ -44,8 +51,10 @@ int main() {
     
 	for(int row = 0; row < h; row++) {
 		for(int col = 0; col < w; col++) {
+			//make pixel if col is within it's margins and row is = to either of it's margins
 		    if(((col >= leftMargin) && (col <= rightMargin)) && ((row == topMargin) || (row == bottomMargin))){
 			    out[row][col] = 255;
+			// make pixel white if col is = to either left or right margin and row is between it's margin
 			} else if (((col == leftMargin) || (col == rightMargin)) && ((row >= topMargin) && (row <= bottomMargin))) {
 			    out[row][col] = 255;
 			} else {

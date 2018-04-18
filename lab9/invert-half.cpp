@@ -6,7 +6,11 @@
 
   Description:
     The program reads a PGM image from the file "inImage.pgm",
-    and outputs a modified image to "outImage.pgm"
+    and outputs a modified image to "outImage.pgm" that inverts half of the files pixels.
+
+  Compile command: g++ invert-half.cpp -o invert-half
+  Run command: ./invert-half
+  Open image: eog outImage.pgm
 */
 
 
@@ -36,13 +40,14 @@ int main() {
 	// Now we can manipulate the image the way we like
 	// for example we copy its contents into a new array
 	int out[MAX_H][MAX_W];
-    int halfW = w/2;
+
+    int halfW = w/2; //declare an intager to indicate the half way mark 
     
 	for(int row = 0; row < h; row++) {
 		for(int col = 0; col < w; col++) {
-		    if(col >= halfW){
-			out[row][col] = 255 - img[row][col];
-			} else {
+		    if(col >= halfW){ //if col is greater than or equal to the half way mark
+			out[row][col] = 255 - img[row][col]; //invert the row
+			} else { // otherwise, keep it the same
 			out[row][col] = img[row][col];
 			}
 		}
