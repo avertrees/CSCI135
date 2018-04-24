@@ -5,7 +5,7 @@
 
 using namespace std;
 
-const int MAX_ROBOT_NUM = 50;
+// const int MAX_ROBOT_NUM = 50;
 
 int NUM;          // to remember number or robots
 int ROWS, COLS;   // map dimensions
