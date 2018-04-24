@@ -5,7 +5,7 @@ using namespace std;
     Author: Alessandra Vertrees
     Course: CSCI-136
     Instructor: Nick Crister
-    Assignment: Lab 10B
+    Assignment: Lab 10A
     
     Description:
         The program uses the struct 'Time' in the functions 'minutesUntil' and 'minutesSinceMidnight' to determine how many minutes are between two moments in time.
@@ -33,11 +33,11 @@ bool test_minutesSinceMidnight();
 int minutesUntil(Time earlier, Time later);
 bool test_minutesUntil();
 
+/*
 //Task B
 Time addMinutes(Time time0, int min);
 bool test_addMinutes();
 
-/*
 //Task C
 create new struct TimeSlot
 create new struct Movie
@@ -61,11 +61,8 @@ int main() {
 
     cout << "TESTING_minutesUntil" << endl;    
     bool resMinutesUntil = test_minutesUntil();
-    
-    cout << "TESTING_addMinutes" << endl;    
-    bool resAddMinutes = test_addMinutes();
 
-    if ((!resMinutesSinceMidnight)||(!resMinutesUntil)||(!resAddMinutes)){
+    if ((!resMinutesSinceMidnight)&&(!resMinutesUntil)){  //if result is not true
         cout << "FAILED_TESTS" << endl;
     } else {    //if result is true
         cout << "PASSED_TESTS" << endl;
@@ -136,40 +133,18 @@ bool test_minutesUntil(){
     return allpass; //return the value of all pass
 }
 
-Time addMinutes(Time time0, int min){
+
+/*Time addMinutes(Time time0, int min){
     //this function should create and return a new moment of time that is 'min' minutes after     
     //'time0'.
-    //ie. addMinutes({8, 10}, 75) should return {9, 25}
-    //compute total minutes and turn into hours
-            //make helper function?>? maybe not useful????
-    int totalMinutes = minutesSinceMidnight(time0) + min;
-    int h = totalMinutes/60;
-    int m = totalMinutes%60;
-    Time newTime = {h, m};
-
-    return newTime;    
+    //ie. addMinutes({}
 }
 
 bool test_addMinutes(){
-    //Time {h, m}
-    const int LEN=1;    //length of array = 3 bc we are testing three cases
-    Time test_a[LEN]={{8,10}};
-    int test_b[LEN]={75};
-    Time res[LEN] = {{9,25}}; 
-    bool pass = false;  //if one cases passes, it is false
-    bool allpass = true;    //if all cases pass, it is ture
-    for(int i=0; i<LEN; i++){ //iterate through each array
-        pass = addMinutes(test_a[i], test_b[i]) == res[i];                    
-        allpass = allpass && pass;
-        if(!pass){  //if there is an error, print it
-            cout << "ta:" << test_a[i].h << ":" << test_a[i].m
-                << "\ttb:" << test_b[i]
-                << "\ntResult" <<  addMinutes(test_a[i], test_b[i])
-                << "\ntexpected:" << res[i].h << ":" << res[i].m << endl;
-        } 
-    }
-    return allpass; //return the value of all pass
+//Time {h, m}
+// minutesUntil({10, 30}, {13, 40}) should return 190 minutes
 }
 
+*/
 
 
