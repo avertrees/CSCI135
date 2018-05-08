@@ -110,4 +110,41 @@ void onRobotMalfunction(int id, Loc loc, Area &area, ostream &log) {
 
 	//incriment number of brokenBots
 }
+
+// Action immediateAction(int id, Loc loc, Area &area, ostream &log){
+// 	int row = loc.r; // current row and column
+// 	int col = loc.c;
+// 	Action action = RIGHT;
+// 	//if bot in way, determine next move
+
+// 	if (bots[row+1][col] != -1){ //bot is below
+// 		if(brokenBots[bots[row+1][col]]){ //bot is down
+// 			action = REPAIR_DOWN;
+// 		} else if (bots[row-1][col] != -1){ //bot is  up
+// 				if (brokenBots[bots[row-1][col]]){
+// 					action = REPAIR_UP;
+// 				} 
+// 		} else if (bots[row][col+1] != -1){ //bot is to the right
+// 				if (brokenBots[bots[row][col+1]]) { // if bot 
+// 					action = REPAIR_RIGHT;
+// 				}
+// 		} else if (bots[row][col-1] != -1){
+// 				if(brokenBots[bots[row][col-1]]) { //bot is to the left
+// 					action = REPAIR_LEFT;
+// 				}
+// 		} else {
+// 			if (bots[row-1][col] == -1){ //bot is  up
+// 				action = UP;
+// 			} else if (bots[row][col+1] == -1){ 
+// 				action = RIGHT;
+// 			} else if (bots[row][col-1] == -1){
+// 				action = LEFT;
+// 			} 
+// 		}
+// 	} else {
+// 		action = DOWN;
+// 	}
+
+// 	return action;
+// }
 */
